@@ -1,0 +1,43 @@
+<div id="modalTest">
+  <h4 class="modal-title" id="modal-title">Importación de data</h4>
+</div>
+
+<div>
+  <input style="background: white;" type="file" (click)="loadingShow()" (change)="onChange($event)" #inputFile>
+  
+  <button class="btn" (click)="removeData()"><span tooltip="Remove Data" placement="bottom" show-delay="500"> <i
+        class="fa fa-trash iconBtn"></i></span>
+  </button>
+  <button class="btn" (click)="subirData()"><span tooltip="Importar data" placement="bottom" show-delay="500"> <i
+        class="fa fa-upload iconBtn"></i></span>
+  </button>
+  <a class="btn" href="../../../../assets/plantillas/Plantilla Usuarios.xlsx"><span tooltip="Descargar plantilla" placement="bottom" show-delay="500"> <i
+    class="fa fa-file-archive iconBtn"></i></span></a>
+ 
+  <div *ngIf="isExcelFile === false">
+    <span style="color: red;"> No es un Archivo de Excel </span>
+  </div>
+  <span *ngIf="spinnerEnabled" class="k-i-loading k-icon"></span>
+  <table>
+    <th *ngFor="let key of keys">
+      {{key}}
+    </th>
+    <tr *ngFor="let item of dataSheet | async">
+      <td *ngFor="let key of keys">
+        {{item[key]}}
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="my-container">
+  <ng-template #customLoadingTemplate>
+  </ng-template>
+
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate">
+  </ngx-loading>
+</div>
+
+<ngx-spinner bdColor="rgba(0,0,0,0.67)" size="large" color="#8ebacb" type="square-jelly-box" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>

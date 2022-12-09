@@ -1,0 +1,189 @@
+<div>
+
+  <a id="show-sidebar" class="btn btn-sm btn-dark" (click)="showsidebar()">
+    <i class="fa fa-bars"></i>
+  </a>
+  <nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+      <div class="sidebar-brand">
+        <a>FACTOOLS</a>
+        <div id="close-sidebar" (click)="closesidebar()">
+          <i class="fa fa-times"></i>
+        </div>
+      </div>
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded"
+            src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+            alt="User picture">
+        </div>
+        <div class="user-info">
+          <span class="user-name">
+            <strong>{{user}}</strong>
+          </span>
+          <span class="user-role">Administrator</span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+        </div>
+      </div>
+      <!-- sidebar-header  -->
+      <div class="sidebar-search">
+        <div>
+          <div class="input-group">
+            <input type="text" class="form-control search-menu" placeholder="Search...">
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- sidebar-search  -->
+      <div class="sidebar-menu">
+        <ul *ngFor="let menu of AuthMenu">
+          <div>
+          
+            <li id="enc{{menu.codigo}}" class="sidebar-dropdown enc-{{menu.codigo}}" *ngIf="menu.nivelMenu==1"
+              [routerLink]="[menu.url]" (click)="showDropSidebar(menu.codigo)">
+              <a [routerLink]="[menu.url]">
+                <span style="padding: 0px;"><i [ngClass]="menu.icono"></i>{{menu.nombre}}</span>
+              </a>
+              <div >
+                <ul *ngFor="let men of AuthMenu" id="list-{{menu.codigo}}">
+                  <div>
+                    <li  *ngIf="men.nivelMenu===2 && men.menuPadre===menu.codigo" class="subLi sub-{{men.menuPadre}}"
+                      [routerLink]="[men.url]" >
+                      <a [routerLink]="[men.url]">
+                        <span style="padding: 0px;"><i [ngClass]="men.icono"></i>{{men.nombre}}</span>
+                      </a>
+                    </li>
+                  </div>
+                </ul>
+              </div>
+              
+
+            </li>
+          </div>
+
+   
+   
+      <!--
+            <li class="sidebar-dropdown">
+              <a >
+                <i class="fa fa-shopping-cart"></i>
+                <span>E-commerce</span>
+                <span class="badge badge-pill badge-danger">3</span>
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a >Products
+      
+                    </a>
+                  </li>
+                  <li>
+                    <a >Orders</a>
+                  </li>
+                  <li>
+                    <a >Credit cart</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="sidebar-dropdown">
+              <a >
+                <i class="far fa-gem"></i>
+                <span>Components</span>
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a >General</a>
+                  </li>
+                  <li>
+                    <a >Panels</a>
+                  </li>
+                  <li>
+                    <a >Tables</a>
+                  </li>
+                  <li>
+                    <a >Icons</a>
+                  </li>
+                  <li>
+                    <a >Forms</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="sidebar-dropdown">
+              <a >
+                <i class="fa fa-chart-line"></i>
+                <span>Charts</span>
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a >Pie chart</a>
+                  </li>
+                  <li>
+                    <a >Line chart</a>
+                  </li>
+                  <li>
+                    <a >Bar chart</a>
+                  </li>
+                  <li>
+                    <a >Histogram</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="sidebar-dropdown">
+              <a >
+                <i class="fa fa-globe"></i>
+                <span>Maps</span>
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a >Google maps</a>
+                  </li>
+                  <li>
+                    <a >Open street map</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="header-menu">
+              <span>Extra</span>
+            </li>
+            <li>
+              <a >
+                <i class="fa fa-book"></i>
+                <span>Documentation</span>
+                <span class="badge badge-pill badge-primary">Beta</span>
+              </a>
+            </li>
+            <li>
+              <a >
+                <i class="fa fa-calendar"></i>
+                <span>Calendar</span>
+              </a>
+            </li>
+            <li>
+              <a >
+                <i class="fa fa-folder"></i>
+                <span>Examples</span>
+              </a>
+            </li>
+          -->
+      </ul>
+    </div>
+    <!-- sidebar-menu  -->
+</div>
+<!-- footer-sidebar-content  -->
+<app-footer-sidebar></app-footer-sidebar>
+</nav>
+</div>

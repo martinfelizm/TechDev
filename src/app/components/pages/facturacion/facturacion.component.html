@@ -1,0 +1,271 @@
+<div class="col-md-12">
+
+  <div class="card col-md-8 cardLeft">
+    <div>
+      <form #frmCaja>
+        <div class="col-md-12">
+          <div class="card col-md-2 cardLeft" id="logoBusiness">
+            <img loading="lazy" src="../../../../assets/images/prod/pro10.PNG" class="imgTam" alt="" />
+          </div>
+          <div class="card col-md-6 cardLeft">
+            <form action="" class="mid-form" #frmArticle="ngForm">
+              <div class="form-group doRight">
+                <label for="title">Numero de Factura : </label>
+                <input type="text" name="title" data-rule-minlength="2" required pattern="[a-zA-Z ]+">
+
+              </div>
+
+              <div class="form-group doRight">
+                <label for="title">Comprobante : </label>
+                <input type="text" name="title" data-rule-minlength="2" required pattern="[a-zA-Z ]+">
+
+              </div>
+
+              <div class="doLeft">
+                <label for="title">Cliente : </label>
+              </div>
+              <div class="form-group doRight">                
+                <input type="text" id="cliSend" name="title" data-rule-minlength="2" style="width: 320px;" required
+                  pattern="[a-zA-Z ]+" [ngClass]="{'width': '500px;'}">
+                <button class="btn" (click)="openModal(template1,1)"><span> <i
+                      class="fa fa-search iconBtn"></i></span></button>
+              </div>
+
+              <div class="clearfix"></div>
+            </form>
+          </div>
+          <div class="card col-md-3 cardRight">
+            <form action="" class="mid-form" #frmArticle="ngForm">
+              <div class="form-group">
+
+                <label for="title">Numero de Factura</label>
+                <input type="text" name="title" data-rule-minlength="2" required pattern="[a-zA-Z ]+">
+
+              </div>
+
+              <div class="clearfix"></div>
+
+            </form>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div>
+          <div class="card col-md-7">
+            <form action="" class="mid-form" #frmArticle="ngForm">
+              <div class="form-group">
+
+                <label for="title">Numero de Factura</label>
+                <input type="text" name="title" data-rule-minlength="2" required pattern="[a-zA-Z ]+">
+
+              </div>
+
+
+              <div class="clearfix"></div>
+
+            </form>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="card col-md-3 cardRight">
+    <div class="row button-card">
+      <button class="btn btn-blow"><span class=""><img loading="lazy"
+            src="../../../../assets/images/prod/pro1.PNG" /></span></button>
+      <button class="btn btn-blow"><span class=""><img loading="lazy"
+            src="../../../../assets/images/prod/pro2.PNG" /></span></button>
+      <button class="btn btn-blow"><span class=""><img loading="lazy"
+            src="../../../../assets/images/prod/pro3.PNG" /></span></button>
+      <button class="btn btn-blow"><span class=""><img loading="lazy"
+            src="../../../../assets/images/prod/pro4.PNG" /></span></button>
+      <button class="btn btn-blow"><span class=""><img loading="lazy"
+            src="../../../../assets/images/prod/pro5.PNG" /></span></button>
+      <button class="btn btn-blow"><span class=""><img loading="lazy"
+            src="../../../../assets/images/prod/pro6.PNG" /></span></button>
+      <button class="btn btn-blow"><span class=""><img loading="lazy"
+            src="../../../../assets/images/prod/pro7.PNG" /></span></button>
+      <button class="btn btn-blow"><span class=""><img loading="lazy"
+            src="../../../../assets/images/prod/pro8.PNG" /></span></button>
+      <button class="btn btn-blow"><span class=""><img loading="lazy"
+            src="../../../../assets/images/prod/pro9.PNG" /></span></button>
+      <button class="btn btn-blow"><span class=""><img loading="lazy"
+            src="../../../../assets/images/prod/pro10.PNG" /></span></button>
+      <button class="btn btn-blow"><span class=""><img loading="lazy"
+            src="../../../../assets/images/prod/pro11.PNG" /></span></button>
+      <button class="btn btn-blow"><span class=""><img loading="lazy"
+            src="../../../../assets/images/prod/pro12.PNG" /></span></button>
+      <button class="btn btn-blow"><span class=""> <i class="fa fa-dollar icon-btn-blow"><a
+              class="txt-btn-blow">Pagos</a></i></span></button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<ng-template #template2 data-backdrop="static" data-keyboard="false" loading="lazy">
+  <form action="" id="frmAddCli" class="mid-form" #frmAddCli="ngForm" (ngSubmit)="saveCli($event)">
+    <div id="modalTest">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-title">Agregar Clientes</h4>
+      </div>
+      <div class="modal-body">
+        <div class="card col-md-12">
+
+          <div class="form-group doRight">
+
+            <label for="title">Codigo : </label>
+            <input type="text" id="Id" name="Id" data-rule-minlength="2" [(ngModel)]="ClienteNew.id" #id="ngModel"
+              required pattern="[0-9]+" readonly>
+
+          </div>
+          <div class="form-group doRight">
+
+            <label for="title">Nombre : </label>
+            <input type="text" name="nameCli" id="nameCli" data-rule-minlength="2" [(ngModel)]="ClienteNew.nombre"
+              #nombre="ngModel" required pattern="[a-zA-Z ]+" style="width: 300px;text-transform:uppercase">
+            <small class="smallRed" *ngIf="!nombre.valid && nombre.touched">
+              El nombre del cliente es invalido ??
+            </small>
+          </div>
+
+          <div class="form-group doRight">
+            <label for="title">Tipo : </label>
+            <select class="dropdownSelect" id="typeCli" name="typeCli" required [(ngModel)]="ClienteNew.tipo"
+              #tipo="ngModel">
+              <option label="--- SELECCIONE ---" values="Select"></option>
+              <option *ngFor="let doc of documents" [ngValue]="doc.descripcion">
+                {{doc.descripcion}}
+              </option>
+            </select>
+            <small class="smallRed" *ngIf="!tipo.valid && tipo.touched">
+              Debe de seleccionar un tipo de documento ??
+            </small>
+          </div>
+
+          <div class="form-group doRight">
+
+            <label for="title">Cedula/Pasaporte/RNC : </label>
+            <input type="text" name="identityCli" id="identityCli" [(ngModel)]="ClienteNew.identificacion"
+              #identificacion="ngModel" data-rule-minlength="5" required>
+            <small class="smallRed" *ngIf="!identificacion.valid && identificacion.touched">
+              EL número de identificación es invalido ??
+            </small>
+          </div>
+          <div>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger btn-margin-right" (click)="closeModal(2)">Cancelar</button>
+        <input type="submit" #btnSend value="Guardar" class="btn btn-primary" [disabled]="frmAddCli.invalid" [ngClass]="{
+                  'hideAll': frmAddCli.invalid
+              }">
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #template1 data-backdrop="static" data-keyboard="false" id="modalTest" loading="lazy">
+  <form action="" class="mid-form" #frmArticle="ngForm" (ngSubmit)="findCli($event)">
+    <div>
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-title">Clientes</h5>
+        <div>
+          <button class="btn" (click)="openModal(template2,2)"><span tooltip="Crear Cliente" placement="bottom"
+              show-delay="500"> <i class="fa fa-user-plus iconBtn"></i></span>
+          </button>
+          <button class="btn" (click)="closeModal(1)"><span tooltip="Cerrar" placement="bottom" show-delay="500"> <i
+                class="fa fa-times iconBtn btnClose"></i></span>
+          </button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="card col-md-12">
+          <div>
+
+            <input id="inFind" class="form-control" matInput (keyup)="applyFilter($event)"
+              placeholder="BUSCAR POR CODIGO, NOMBRE, IDENTIFICACION" value="" #input>
+            <!--input id="header_search_query" #input type="search" matInput (keyup)="applyFilter($event)" name="header_search_query" value="" placeholder="Search icons..." class="input-reset color-inherit input-focus all-animate br-pill ph4 sans-serif header-search-input ba bw1 bg-gray1 b--gray1" -->
+
+            <!--button type="button" class="btn" style="float: right;" (click)="Disablechk(false)"><span> <i
+                  class="fa fa-check-square iconBtn"></i>Habilitar selección</span></button-->
+            <table id="tblCli" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+              <!-- Position Column 
+              <ng-container matColumnDef="seleccione">
+                <th mat-header-cell *matHeaderCellDef>
+                  <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                     [aria-label]="checkboxLabel()"
+                     [disabled] ="true">
+                  </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)" (change)="updateCheckedList($event,row)" 
+                    [disabled]="disabledchk"
+                    >
+                  </mat-checkbox>
+                </td>
+
+              </ng-container>
+            -->
+              <!-- Position Column -->
+              <ng-container matColumnDef="identificacion">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element" loading="lazy"> {{element.identificacion}} </td>
+              </ng-container>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let element" loading="lazy"> {{element.nombre}} </td>
+              </ng-container>
+
+              <!-- Weight Column -->
+              <ng-container matColumnDef="tipo">
+                <th mat-header-cell *matHeaderCellDef> Tipo </th>
+                <td mat-cell *matCellDef="let element" loading="lazy"> {{element.tipo}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="seleccione">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let element">
+                  <button class="btn" loading="lazy" (click)="editCli(template2,element)"><span tooltip="Editar"
+                      placement="bottom" show-delay="500"> <i class="fa fa-pencil iconBtn"></i></span></button>
+                  <button class="btn" loading="lazy" (click)="enviarCli(template2,element)"><span tooltip="Enviar"
+                      placement="bottom" show-delay="500"> <i class="fa fa-check"></i></span></button>
+                </td>
+              </ng-container>
+
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+              <!-- Row shown when there is no matching data. -->
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+              </tr>
+            </table>
+
+          </div>
+
+
+          <!--button type="submit" #btnSend class="btn"> <span _ngcontent-fea-c55=""><i _ngcontent-fea-c55=""
+                class="fa fa-search iconBtn"></i> Buscar</span></button-->
+
+        </div>
+      </div>
+      <!--div class="modal-footer">
+        <button type="button" class="btn btn-danger btn-margin-right" (click)="closeModal(1)">Cancelar</button>       
+
+      </div-->
+    </div>
+  </form>
+</ng-template>
+<!--button type="button" class="btn btn-primary" (click)="openModal(template2)" data-toggle="modal" data-backdrop="static" data-keyboard="false">Create</button-->
